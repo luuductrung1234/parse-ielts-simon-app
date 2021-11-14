@@ -21,19 +21,22 @@ export function generate(page, configs) {
 
   let navItems = "";
   configs.pages.forEach((pageConfig) => {
-    if (page.fileName === pageConfig.pageName)
+    if (page.fileName === pageConfig.fileName)
       navItems += `
 		<li class="nav-item active">
-			<a class="nav-link" href="${pageConfig.fileName}">${pageConfig.pageName} <span class="sr-only">(current)</span></a>
+			<a class="nav-link" href="#" aria-current="page">${pageConfig.pageName} <span class="sr-only">(current)</span></a>
 		</li>`;
     else
       navItems += `
 		<li class="nav-item">
-			<a class="nav-link" href="href="${pageConfig.fileName}">${pageConfig.pageName}</a>
+			<a class="nav-link" href="./${pageConfig.fileName}">${pageConfig.pageName}</a>
 		</li>`;
   });
 
   let header = `
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="thomas" content="">
 	<title>${page.pageName}</title>
 	<link rel="icon" type="image/x-icon" href="./assets/favicon.ico"/>
 	<link rel="stylesheet" href="./assets/style.css">
@@ -46,22 +49,24 @@ export function generate(page, configs) {
 	<html><head>
 		${header}
 		</head><body>
-			<nav class="navbar navbar-expand-lg navbar-light bg-light">
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
+			<nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+			<div class="container-fluid">
 				<a class="navbar-brand" href="#"><img src="./assets/favicon-32x32.png" alt="Thomas & IELTS"></a>
-
-				<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-					<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-  						${navItems}
-					</ul>
-					<form class="form-inline my-2 my-lg-0">
-					<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-					</form>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+  					${navItems}
+				</ul>
+				<form class="d-flex">
+					<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+					<button class="btn btn-outline-success" type="submit">Search</button>
+				</form>
 				</div>
+			</div>
 			</nav>
+
 			${body}
 		</body>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
