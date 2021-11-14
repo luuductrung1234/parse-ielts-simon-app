@@ -1,16 +1,16 @@
 import { httpHelper } from "./http-helper.js";
 
 export let simonHelper = {
-  getArticles: async function (filter) {
+  getPages: async function (configs) {
     const $ = await httpHelper.get({
-      startPage: filter.startPage,
-      endPage: filter.endPage,
+      startPage: configs.startPage,
+      endPage: configs.endPage,
       hostname: "www.ielts-simon.com",
       path: "/ielts-help-and-english-pr",
       subPath: "/page/",
     });
 
-    const articles = [];
+    const pages = [];
     const articleDates = [];
     const articleHeaders = [];
     const articleUrls = [];
@@ -40,23 +40,37 @@ export let simonHelper = {
       });
     });
 
-    for (let index = 0; index < articleCount; index++) {
-      if (
-        filter.searchText.length > 0 &&
-        filter.searchText.every((text) => !articleHeaders[index].includes(text))
-      )
-        continue;
+    console.log(`found ${articleCount} articles.`);
 
-      articles.push({
-        date: articleDates[index],
-        title: articleHeaders[index],
-        url: articleUrls[index],
-        body: articleBodies[index],
-      });
-    }
+    configs.pages.forEach((pageConfig) => {
+      let page = {
+        fileName: pageConfig.fileName,
+        pageName: pageConfig.pageName,
+        articles: [],
+      };
 
-    console.log(`found ${articleCount} articles`);
+      for (let index = 0; index < articleCount; index++) {
+        if (
+          pageConfig.searchText.length > 0 &&
+          pageConfig.searchText.every(
+            (text) => !articleHeaders[index].includes(text)
+          )
+        )
+          continue;
 
-    return articles;
+        page.articles.push({
+          date: articleDates[index],
+          title: articleHeaders[index],
+          url: articleUrls[index],
+          body: articleBodies[index],
+        });
+      }
+
+      pages.push(page);
+    });
+
+    console.log(`grouped into ${pages.length} pages.`);
+
+    return pages;
   },
 };
