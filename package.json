@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "cheerio": "^1.0.0-rc.10",
-    "cli-spinner": "^0.2.10"
+    "cli-spinner": "^0.2.10",
+    "github-fork-ribbon-css": "^0.2.3"
   }
 }
