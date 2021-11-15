@@ -4,7 +4,7 @@ export function generate(page, configs) {
   let data = "";
   let cellCount = 1;
   page.articles.forEach((a) => {
-    data += `<div class="col">
+    data += `<div class="col-xl-4 col-md-6 col-12">
 	<h5>${a.date}</h5>
 	<h4><a target="_blank" rel="noopener noreferrer" href="${a.url}">${a.title}</a></h4>
 	<p>${a.body}</p>
