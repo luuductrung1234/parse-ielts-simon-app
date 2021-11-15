@@ -6,7 +6,7 @@ export function generate(page, configs) {
   page.articles.forEach((a) => {
     data += `<div class="col">
 	<h5>${a.date}</h5>
-	<h4><a href="${a.url}">${a.title}</a></h4>
+	<h4><a target="_blank" rel="noopener noreferrer" href="${a.url}">${a.title}</a></h4>
 	<p>${a.body}</p>
 	</div>`;
 
