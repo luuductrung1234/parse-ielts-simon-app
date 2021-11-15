@@ -53,7 +53,7 @@ export function generate(page, configs) {
   			<a class="github-fork-ribbon" href="https://github.com/luuductrung1234/parse-ielts-simon-app" data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>
 
 			<nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
-			<div class="container-fluid">
+			<div class="container-fluid articles-container">
 				<a class="navbar-brand" href="#"><img src="./assets/favicon-32x32.png" alt="Thomas & IELTS"></a>
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
